@@ -15,6 +15,9 @@
         <li class="nav-item">
           <a class="nav-link" href="javascript:void(0)" v-show="isAuth" @click.prevent="logoutApp">Logout</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)" v-show="isAuth" @click.prevent="logoutAppAllDevice">Logout All Device</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -27,9 +30,12 @@ export default {
     ...mapGetters(['isAuth'])
   },
   methods: {
-    ...mapActions('auth', ['logout']),
+    ...mapActions('auth', ['logout', 'logoutAllDevice']),
     logoutApp () {
       this.logout()
+    },
+    logoutAppAllDevice () {
+      this.logoutAllDevice()
     }
   }
 }

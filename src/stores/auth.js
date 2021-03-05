@@ -21,7 +21,7 @@ const actions = {
         )
       })
   },
-  logout ({ commit, state } ) {
+  logout ({ commit, state }) {
     $axios
       .post('/auth/logout')
       .then(({ data }) => {
@@ -36,7 +36,22 @@ const actions = {
           'error'
         )
       })
-    
+  },
+  logoutAllDevice ({ commit, state }) {
+    $axios
+      .post('/auth/logoutall')
+      .then(({ data }) => {
+        localStorage.clear()
+        commit('setToken', localStorage.getItem(state.access_token), { root: true })
+        router.push('/login')
+      })
+      .catch(({ response }) => {
+        Swal.fire(
+          'Errors',
+          `${response.data.msg}`,
+          'error'
+        )
+      })
   }
 }
 
